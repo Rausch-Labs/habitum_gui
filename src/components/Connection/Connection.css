@@ -1,0 +1,30 @@
+.status {
+  padding: 0.5rem;
+  border: 2px solid #444c56;
+  background-color: #2b303b;
+  min-width: 36px;
+
+  display: block;
+
+  border-radius: 5px;
+  margin-right: 0.5rem;
+  align-content: center;
+  flex-direction: row;
+  display: flex;
+  padding: 0.5rem 0.55rem 0.5rem 0.5rem;
+  color: white;
+}
+
+.status-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.status-signal {
+  width: 9px;
+  height: 9px;
+  border-radius: 9px;
+  margin-top: 0.3rem;
+  margin-right: 0.3rem;
+  display: block;
+}

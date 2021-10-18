@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "outDir": "../build/electron",
+    "baseUrl": ".",
+    "skipLibCheck": true // https://stackoverflow.com/questions/50609517/error-ts2300-duplicate-identifier-requestinfo 
+  },
+  "include": [
+    ".",
+    "../src/types"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

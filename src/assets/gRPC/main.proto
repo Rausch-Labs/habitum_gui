@@ -1,0 +1,89 @@
+// protoc --go_out=. --go_opt=paths=source_relative     --go-grpc_out=. --go-grpc_opt=paths=source_relative     ./main.proto
+
+syntax = "proto3";
+
+option go_package = "github.com/suisuss/habitum_gRPC/proto/proto";
+
+package main;
+
+
+service Habits {
+  rpc InitHabit (InitHabitRequest) returns (HabitResponse) {}
+  rpc UpdateHabit (UpdateHabitRequest) returns (HabitResponse) {}
+  rpc DeleteHabit (DeleteHabitRequest) returns (HabitResponse) {}
+  rpc GetHabitIDByName (InitHabitRequest) returns (HabitResponse) {}
+  rpc GetHabitByID (DeleteHabitRequest) returns (HabitResponse) {}
+
+  rpc LogHabit (LogHabitRequest) returns (HabitLogResponse) {}
+  rpc UpdateHabitLog (UpdateHabitLogRequest) returns (HabitLogResponse) {}
+  rpc DeleteHabitLog (DeleteHabitLogRequest) returns (HabitLogResponse) {}
+  rpc GetHabitLogIDByHabit (LogHabitRequest) returns (HabitLogResponse) {}
+  rpc GetHabitLogByID (DeleteHabitRequest) returns (HabitLogResponse) {}
+}
+
+
+message HabitLog {
+  string type = 1;
+  string note = 2;
+  string date = 3;
+  string id = 4;
+}
+
+message Habit {
+  string id = 1;
+  string name = 2;
+}
+
+
+message HabitResponse {
+  string message = 1;
+  int32 status = 2;
+  Habit data = 3;
+  repeated Habit dataRepeat = 4;
+}
+
+message HabitLogResponse {
+  string message = 1;
+  int32 status = 2;
+
+  HabitLog data = 3;
+  repeated HabitLog dataRepeat = 4;
+}
+
+message HabitReply {
+  string message = 1;
+}
+
+message InitHabitRequest {
+  string name = 1;
+}
+
+message UpdateHabitRequest {
+  string name = 1;
+  string id = 2;
+}
+
+message DeleteHabitRequest {
+  string id = 1;
+}
+
+message HabitLogReply {
+  string message = 1;
+}
+
+message LogHabitRequest {
+  string type = 1;
+  string note = 2;
+  string date = 3;
+}
+
+message UpdateHabitLogRequest {
+  string id = 1;
+  string type = 2;
+  string note = 3;
+  string date = 4;
+}
+
+message DeleteHabitLogRequest {
+  string id = 1;
+}
