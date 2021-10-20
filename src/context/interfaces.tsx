@@ -4,11 +4,27 @@ export interface State {
 }
 
 export interface ConnectionsState {
-  gRPC: ConnectionState,
-  graphQL: ConnectionState
+  grpc: ConnectionState,
+  graphql: ConnectionState
 }
 
 export interface ConnectionState {
   online: boolean,
   authenticated: boolean
+}
+
+
+export interface SetConnection {
+  type: "SET_CONNECTION",
+  data: {
+    graphQL?: any,
+    grpc?: any
+  }
+}
+
+export interface SetData {
+  type: "SET_DATA",
+  data: {
+    data: any
+  }
 }

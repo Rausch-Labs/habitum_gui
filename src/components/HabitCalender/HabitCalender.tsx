@@ -94,7 +94,7 @@ const setupDays = (dates:  Date[]) => {
 }
 
 
-const setupCalander = (start: Date, end: Date) => {
+const setupCalander = (shiftDays: (days: Days, end: Date) => Days, start: Date, end: Date) => {
   const dates: Date[] = getDates(end, start).reverse()
   const days = setupDays(dates)
   return shiftDays(days, end)
@@ -169,7 +169,7 @@ export const HabitCalender: React.FC = () => {
   const now: Date = new Date()
   const end: Date = addDays(new Date(new Date().setFullYear(now.getFullYear() - 1)), 1)
 
-  const calender = setupCalander(now, end)
+  const calender = setupCalander(shiftDays, now, end)
 
   const renderCalenderDays = Object.values(calender).map((value, index) => {
     return (

@@ -10,11 +10,11 @@ import reducer, { Action, setConnection, setData } from "./reducer";
 const INITIAL_STATE: State = {
   data: undefined,
   connection: {
-    gRPC: {
+    grpc: {
       online: false,
       authenticated: false
     },
-    graphQL: {
+    graphql: {
       online: false,
       authenticated: false
     },
@@ -136,7 +136,6 @@ export const HabitumUpdater: React.FC = () => {
 
   const ping = () => {
     pingService(habitum_GraphQL).then((data: any) => {
-
       console.log('habitum_GraphQL ping successful', data)
       setConnection(dispatch, { online: true, authenticated: false })
     }).catch((e: any) => {
@@ -147,7 +146,7 @@ export const HabitumUpdater: React.FC = () => {
 
   // Fetch
   useEffect(() => {
-    if (state.connection.graphQL) {
+    if (state.connection.graphql) {
       fetchData(habitum_GraphQL).then((data: any) => {
         setData(dispatch, data.data)
       }).catch((e: any) => {
@@ -155,7 +154,7 @@ export const HabitumUpdater: React.FC = () => {
       })
     }
     // eslint-disable-next-line
-  }, [state.connection.graphQL, habitum_GraphQL])
+  }, [state.connection.graphql, habitum_GraphQL])
 
   // Ping
   useEffect(() => {

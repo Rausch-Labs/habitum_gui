@@ -10,8 +10,8 @@ export const Connection: React.FC = () => {
   const [gRPCStatus, setGRPCStatus] = useState("#d28445")
 
   useEffect(() => {
-    state.connection.gRPC?.online ? setGRPCStatus("#00D395") : setGRPCStatus("#d28445")
-    state.connection.graphQL?.online ? setGraphQLStatus("#00D395") : setGraphQLStatus("#d28445")
+    state.connection.grpc?.online ? setGRPCStatus("#00D395") : setGRPCStatus("#d28445")
+    state.connection.graphql?.online ? setGraphQLStatus("#00D395") : setGraphQLStatus("#d28445")
 
   }, [state.connection])
 

@@ -1,22 +1,7 @@
-import { ConnectionState, State } from "./interfaces";
-
-export interface SetConnection {
-  type: "SET_CONNECTION",
-  data: {
-    graphQL?: any,
-    grpc?: any
-  }
-}
-
-export interface SetData {
-  type: "SET_DATA",
-  data: {
-    data: any
-  }
-}
+import { ConnectionState, SetConnection, SetData, State } from "./interfaces";
 
 export const setData = (dispatch: React.Dispatch<Action>, data: any) => {
-  dispatch({
+  return dispatch({
     type: "SET_DATA",
     data: data
   })
@@ -24,10 +9,11 @@ export const setData = (dispatch: React.Dispatch<Action>, data: any) => {
 
 export const setConnection = (dispatch: React.Dispatch<Action>, data: ConnectionState) => {
   
-  dispatch({
+  return dispatch({
     type: "SET_CONNECTION",
     data: {
-      graphQL: data 
+      graphQL: data,
+      grpc: data
     }
   })
 }
@@ -41,8 +27,8 @@ function reducer(state: State, action: Action) {
   switch (action.type) {
     case "SET_CONNECTION": {
       return Object.assign({}, state, { connection: {
-        graphQL: action.data.graphQL,
-        gRPC: action.data.grpc,
+        graphql: action.data,
+        grpc: action.data,
       }})
     }
     case "SET_DATA": {

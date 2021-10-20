@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Connection } from '../../components/Connection/Connection';
 import { HabitCalender } from '../../components/HabitCalender/HabitCalender';
-import { Note } from '../../components/Note/Note';
 import { TerminalComponent } from '../../components/Term/Term';
+import { useHabitiumContext } from '../../context';
 import './Home.css';
 
 interface Props {
@@ -11,13 +11,17 @@ interface Props {
 
 
 export const Home: React.FC<Props> = ({ history }) => {
+  const { state } = useHabitiumContext()
 
   return (
     <div className="Home">
       <Connection/>
       <TerminalComponent/>
-      <HabitCalender />
-      <Note/>
+      {(state.connection.graphql.authenticated || state.connection.grpc.authenticated) &&
+        <>
+          <HabitCalender />
+        </>
+        }
     </div>
   );
 };
