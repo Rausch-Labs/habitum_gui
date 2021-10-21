@@ -9,6 +9,10 @@ export interface SetFormData {
   }
 }
 
+export interface ClearFormData {
+  type: "CLEAR_FORM_DATA"
+}
+
 export interface SetCommandHistory {
   type: "SET_COMMAND_HISTORY",
   data: string[]

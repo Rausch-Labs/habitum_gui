@@ -9,8 +9,8 @@ export interface ConnectionsState {
 }
 
 export interface ConnectionState {
-  online: boolean,
-  authenticated: boolean
+  online?: boolean,
+  authenticated?: boolean
 }
 
 

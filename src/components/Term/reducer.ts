@@ -1,7 +1,4 @@
-
-import { SetCommandHistory, SetFormData, SetHistory, SetRequestedFields, State } from "./interfaces";
-
-
+import { ClearFormData, SetCommandHistory, SetFormData, SetHistory, SetRequestedFields, State } from "./interfaces";
 
 export const INITIAL_STATE: State = {
   commandHistory: [],
@@ -30,8 +27,8 @@ export const setHistory = (dispatch: React.Dispatch<Action>, data: any) => {
   )
 }
 
-export const setRequestedFields = (dispatch: React.Dispatch<Action>, data: any) => {
-  return dispatch(
+export const setRequestedFields = async (dispatch: React.Dispatch<Action>, data: any) => {
+  dispatch(
     {
       type: "SET_REQUESTED_FIELDS",
       data: data
@@ -40,16 +37,26 @@ export const setRequestedFields = (dispatch: React.Dispatch<Action>, data: any) 
 }
 
 
-export type Action = 
+export type Action =
   SetFormData
   | SetCommandHistory
   | SetHistory
   | SetRequestedFields
+  | ClearFormData
 
 export function reducer(state: State = INITIAL_STATE, action: Action) {
   switch (action.type) {
     case "SET_FORM_DATA":
-      return Object.assign({}, state, { formData: { [action.data.field]: action.data.payload }})
+      return Object.assign({}, state, {
+        formData: {
+          ...state.formData,
+          [action.data.field]: action.data.payload
+        }
+      })
+    case "CLEAR_FORM_DATA":
+      return Object.assign({}, state, {
+        formData: {}
+      });
     case "SET_COMMAND_HISTORY":
       return Object.assign({}, state, { commandHistory: action.data })
     case "SET_HISTORY":

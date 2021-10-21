@@ -38,23 +38,8 @@ export const listFiles = (): string[] => {
   return ["README.md"]
 }
 
-
-export const handleAuthenticate = (args: string[]): string[] => {
-  const serviceName = args[0].toLowerCase()
-
-  switch (serviceName) {
-    case 'graphql':
-      return handleGraphQLAuth(args.slice(1, args.length))
-    case 'grpc':
-      return handleGraphQLAuth(args.slice(1, args.length))
-    default:
-      return [`handleAuthenticate: Invalid service ${serviceName}`]
-  }
-}
-
-
-
-export const handleGraphQLAuth = (args: string[]): string[] => {
-
-  return ["Function not implemented"]
+export const setForm = (dispatch: React.Dispatch<Action>, data: any): string[] => {
+  dispatch({type: "CLEAR_FORM_DATA"})
+  setRequestedFields(dispatch, data)
+  return ["Requesting..."]
 }

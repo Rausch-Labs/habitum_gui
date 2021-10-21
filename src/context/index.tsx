@@ -42,12 +42,12 @@ const getFetchData = () => async (client: Client) => {
   })
 };
 
-const getAuthenticate = () => async (client: Client) => {
+const getAuthenticate = () => async (client: Client, username: string, password: string) => {
   const tokensQuery = gql`
     query {
       AuthorizeUser(request: {
-        username: "test",
-        password: "test"
+        username: "${username}",
+        password: "${password}"
       }) {
         message
         status
@@ -57,9 +57,12 @@ const getAuthenticate = () => async (client: Client) => {
       }
     }`
   
-  return client.query({
+  const response = client.query({
     query: tokensQuery,
   })
+
+  
+  return response
 };
 
 const getPingService = () => async (client: Client) => {
@@ -84,7 +87,7 @@ const INITIAL_CONTEXT = {
   // habitum_gRPC: GRPC_CLIENT
   fetchData: (_: Client): any => { },
   pingService: (_: Client): any => { },
-  authenticateUser: (_:Client): any => { },
+  authenticateUser: (_:Client, _username: string, _password: string): any => { },
   dispatch: (_: Action) => { },
   
 }
@@ -137,10 +140,10 @@ export const HabitumUpdater: React.FC = () => {
   const ping = () => {
     pingService(habitum_GraphQL).then((data: any) => {
       console.log('habitum_GraphQL ping successful', data)
-      setConnection(dispatch, { online: true, authenticated: false })
+      setConnection(dispatch, { online: true, authenticated: state.connection.graphql.authenticated })
     }).catch((e: any) => {
       console.error('habitum_GraphQL ping failed', e)
-      setConnection(dispatch, { online: false, authenticated: false })
+      setConnection(dispatch, { online: false, authenticated: false  })
     })
   }
 
@@ -165,7 +168,7 @@ export const HabitumUpdater: React.FC = () => {
 
     return () => clearInterval(id)
     // eslint-disable-next-line
-  }, [])
+  }, [state.connection.graphql.authenticated, state.connection.grpc.authenticated])
 
   return null
 }

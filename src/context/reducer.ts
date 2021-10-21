@@ -11,8 +11,12 @@ export const setConnection = (dispatch: React.Dispatch<Action>, data: Connection
   return dispatch({
     type: "SET_CONNECTION",
     data: {
-      graphql: data,
-      grpc: data
+      graphql: {
+        ...data
+      },
+      grpc: {
+        ...data
+      }
     }
   })
 }
