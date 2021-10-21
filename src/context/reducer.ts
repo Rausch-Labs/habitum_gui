@@ -8,11 +8,10 @@ export const setData = (dispatch: React.Dispatch<Action>, data: any) => {
 }
 
 export const setConnection = (dispatch: React.Dispatch<Action>, data: ConnectionState) => {
-  
   return dispatch({
     type: "SET_CONNECTION",
     data: {
-      graphQL: data,
+      graphql: data,
       grpc: data
     }
   })
@@ -26,10 +25,7 @@ export type Action = (SetConnection | SetData)
 function reducer(state: State, action: Action) {
   switch (action.type) {
     case "SET_CONNECTION": {
-      return Object.assign({}, state, { connection: {
-        graphql: action.data,
-        grpc: action.data,
-      }})
+      return Object.assign({}, state, { connection: action.data })
     }
     case "SET_DATA": {
       return Object.assign({}, state, { data: action.data })

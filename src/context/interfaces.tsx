@@ -17,7 +17,7 @@ export interface ConnectionState {
 export interface SetConnection {
   type: "SET_CONNECTION",
   data: {
-    graphQL?: any,
+    graphql?: any,
     grpc?: any
   }
 }
