@@ -1,16 +1,41 @@
-# habitum_GUI
+# Tauri Typescript React Boilerplate
+A Tauri Typescript React Boilerplate that works out of the box.
 
-## Dev Setup
+- [x] MacOS
+- [x] Windows 10
+- [x] Linux
 
-You'll need to running a habitum backend service (such as [https://github.com/Rausch-Labs/habitum_graphql](https://github.com/Rausch-Labs/habitum_graphql)) in dev mode.
+## Setup
+Follow the [Tauri setup docs](https://tauri.studio/docs/getting-started/intro/) in your platform to get everything set up for Tauri development, then run
 
-Then just run:
+```bash
+$ yarn
 ```
-yarn
-yarn start-react
+
+### Note for MacOS users
+I had to do the following to get `node-gyp` to work...
+* Use homebrew to install `vips`, `cmake` and `poppler`: 
+```bash
+$ brew install vips cmake && brew link --overwrite poppler
+```
+* [Compile and install OpenEXR.](https://github.com/AcademySoftwareFoundation/openexr/blob/master/INSTALL.md)
+
+### Note for Windows users
+I had to run `rustup default stable` to change the default rust toolchain from `gnu` to `msvc`.
+
+## Development
+
+```bash
+$ yarn dev
 ```
 
-## Resources
+There's an example app that shows a little bit of how you can communicate between the front end (Typescript/JS) and back end (Rust)
 
-- [https://github.com/SzybkiSasza/gdg-react-workshop](https://github.com/SzybkiSasza/gdg-react-workshop)
-- [https://github.com/prakhar1989/react-term](https://github.com/prakhar1989/react-term)
+## Build
+```bash
+$ yarn build
+```
+Tauri will walk you through the rest.
+
+## Contributing
+Feel free to create an issue or PR. Just understand I don't have a ton of time to contribute to this, so I may not be the fastest at responding.
